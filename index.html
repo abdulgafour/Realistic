@@ -2,35 +2,174 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abdul Gafour</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       background: #0d0d0d;
-      color: #d4d4d4;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #c9c9c9;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      line-height: 1.6;
+      padding: 4rem 1.5rem;
       min-height: 100vh;
-      margin: 0;
     }
-    main { max-width: 500px; padding: 2rem; }
-    h1 { color: #fff; }
-    .tagline { color: #888; }
-    a { color: #6cf; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 0.5rem 0; }
+
+    main { max-width: 720px; margin: 0 auto; }
+
+    header { margin-bottom: 3rem; }
+
+    h1 {
+      color: #fff;
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .tagline {
+      color: #6a6a6a;
+      font-size: 0.95rem;
+    }
+
+    section { margin-bottom: 2.5rem; }
+
+    h2 {
+      color: #6cf;
+      font-size: 1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    h2::before {
+      content: "~/";
+      color: #555;
+    }
+
+    p { color: #a8a8a8; margin-bottom: 0.6rem; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0.5rem 1rem;
+      font-size: 0.92rem;
+    }
+
+    .skills-grid .label { color: #6a6a6a; }
+    .skills-grid .value { color: #d0d0d0; }
+
+    ul { list-style: none; }
+
+    li {
+      color: #a8a8a8;
+      margin-bottom: 0.4rem;
+      font-size: 0.92rem;
+    }
+
+    li::before {
+      content: "› ";
+      color: #555;
+    }
+
+    a {
+      color: #6cf;
+      text-decoration: none;
+      border-bottom: 1px dashed transparent;
+    }
+
+    a:hover { border-bottom-color: #6cf; }
+
+    .links li::before { content: ""; }
+
+    .links .label {
+      color: #6a6a6a;
+      display: inline-block;
+      width: 80px;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1f1f1f;
+      color: #555;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 500px) {
+      body { padding: 2.5rem 1rem; }
+      .skills-grid { grid-template-columns: 1fr; gap: 0.2rem; }
+      .skills-grid .label { margin-top: 0.6rem; }
+    }
   </style>
 </head>
 <body>
   <main>
-    <h1>Abdul Ghafour</h1>
-    <p class="tagline">/ Developer /</p>
-    <ul>
-      <li>github :: <a href="https://github.com/abdulgafour">abdulgafour</a></li>
-      <li>email  :: <a href="mailto:[email protected]">[email protected]</a></li>
-    </ul>
+    <header>
+      <h1>Abdul Gafour</h1>
+      <p class="tagline">/ Computer Science Student // Developer /</p>
+    </header>
+
+    <section>
+      <h2>about</h2>
+      <p>CS student focused on building reliable software — from algorithm design and data structures to full software systems. Interested in clean architecture, scientific computing, and the parts of programming that get harder the more you understand them.</p>
+    </section>
+
+    <section>
+      <h2>skills</h2>
+      <div class="skills-grid">
+        <span class="label">languages</span>
+        <span class="value">C++ · Python · Java</span>
+
+        <span class="label">cs core</span>
+        <span class="value">Data Structures · Algorithms · OOP · Computer Architecture</span>
+
+        <span class="label">software eng</span>
+        <span class="value">Design Patterns · Testing · QA · Refactoring · Version Control</span>
+
+        <span class="label">scientific</span>
+        <span class="value">Numerical Methods · Data Analysis · MATLAB · Maple</span>
+
+        <span class="label">tools</span>
+        <span class="value">Git · Unix Shell · GUI Programming · Network Programming</span>
+
+        <span class="label">math</span>
+        <span class="value">Linear Algebra · Calculus · Discrete Math · Statistics</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>coursework</h2>
+      <ul>
+        <li>Analysis &amp; Design of Algorithms — recursion, divide &amp; conquer, greedy, branch &amp; bound, complexity analysis</li>
+        <li>Software Quality Assurance — verification, validation, testing, team project</li>
+        <li>Software Design &amp; Analysis — architecture, design patterns, requirements</li>
+        <li>Data Structures — algorithm analysis in object-oriented languages</li>
+        <li>Scientific Data Analysis — CSV, binary, image and sound processing in Python</li>
+        <li>Computational Science — numerical solutions for nonlinear equations, integration, ODEs</li>
+        <li>Computer Architecture — low-level systems and computer arithmetic</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>projects</h2>
+      <ul>
+        <li>[project-one] — one-line description of what it does and what tech you used · <a href="https://github.com/abdulgafour">github</a></li>
+        <li>[project-two] — one-line description · <a href="https://github.com/abdulgafour">github</a></li>
+        <li>[project-three] — one-line description · <a href="https://github.com/abdulgafour">github</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>contact</h2>
+      <ul class="links">
+        <li><span class="label">github</span>:: <a href="https://github.com/abdulgafour">abdulgafour</a></li>
+        <li><span class="label">email</span>:: <a href="mailto:[email protected]">[email protected]</a></li>
+        <li><span class="label">linkedin</span>:: <a href="#">add your url</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      $ end of file
+    </footer>
   </main>
 </body>
 </html>
