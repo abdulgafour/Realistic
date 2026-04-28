@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>abdul gafour</title>
-  <meta name="description" content="abdul gafour // computer science student & developer">
+  <title>abdul gafour · cs & systems</title>
+  <meta name="description" content="abdul gafour // computer science student, algorithm design, distributed systems, numerical methods">
   <meta name="theme-color" content="#e6c875">
   <meta name="author" content="abdul gafour">
-  <meta property="og:title" content="abdul gafour">
+  <meta property="og:title" content="abdul gafour · portfolio">
   <meta property="og:type" content="website">
 
   <style>
@@ -38,7 +38,7 @@
       position: relative;
     }
 
-    /* === Ambient background layers === */
+    /* ambient + particle layers (unchanged aesthetic) */
     .ambient-container {
       position: fixed;
       inset: 0;
@@ -85,7 +85,6 @@
       z-index: 1;
     }
 
-    /* Floating particles */
     .particle {
       position: fixed;
       width: 2px;
@@ -105,7 +104,7 @@
       to { transform: translateY(-10vh) translateX(20px); opacity: 0; }
     }
 
-    /* === Navigation === */
+    /* navigation */
     .controls {
       position: fixed;
       top: 2rem;
@@ -144,12 +143,12 @@
     .nav-btn::before { content: '['; opacity: 0.5; margin-right: 0.3rem; }
     .nav-btn::after  { content: ']'; opacity: 0.5; margin-left: 0.3rem; }
 
-    /* === Main content === */
+    /* main content */
     main {
       position: relative;
       z-index: 5;
       padding: 5rem 1.5rem 4rem;
-      max-width: 720px;
+      max-width: 760px;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -173,9 +172,22 @@
 
     .body-section {
       width: 100%;
-      max-width: 520px;
+      max-width: 600px;
       text-align: center;
       transition: opacity 0.35s ease, transform 0.35s ease;
+      max-height: 55vh;
+      overflow-y: auto;
+      padding-right: 0.4rem;
+    }
+
+    .body-section::-webkit-scrollbar { width: 3px; }
+    .body-section::-webkit-scrollbar-track { background: transparent; }
+    .body-section::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+    .body-section::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-soft);
     }
 
     .body-section.fading {
@@ -192,72 +204,6 @@
 
     .tagline span { color: var(--accent); }
 
-    .body-section p {
-      color: var(--text);
-      margin-bottom: 0.7rem;
-      font-size: 0.9rem;
-    }
-
-    .meta-grid {
-      display: inline-grid;
-      grid-template-columns: auto auto;
-      gap: 0.4rem 1.2rem;
-      margin-top: 1.2rem;
-      font-size: 0.85rem;
-      text-align: left;
-    }
-
-    .meta-grid .key { color: var(--dim); }
-    .meta-grid .key::before { content: '> '; opacity: 0.6; }
-    .meta-grid .val { color: var(--text); }
-
-    .links-list {
-      list-style: none;
-      display: inline-flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      text-align: left;
-    }
-
-    .links-list li {
-      display: grid;
-      grid-template-columns: 90px auto;
-      gap: 0.8rem;
-      align-items: baseline;
-    }
-
-    .links-list .key { color: var(--dim); }
-    .links-list .key::before { content: '· '; }
-
-    .links-list a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px dashed transparent;
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .links-list a:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    .pgp-block {
-      background: rgba(230, 200, 117, 0.03);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      font-size: 0.7rem;
-      text-align: left;
-      white-space: pre-wrap;
-      word-break: break-all;
-      color: var(--accent-soft);
-      margin-top: 1rem;
-      max-height: 200px;
-      overflow-y: auto;
-      font-family: inherit;
-    }
-
-    /* === Section command label (e.g. $ cat about.txt) === */
     .cmd-label {
       color: var(--dim);
       font-size: 0.78rem;
@@ -267,37 +213,39 @@
     }
     .cmd-label::before { content: '$ '; color: var(--accent); }
 
-    /* === Section content base === */
-    .section-content {
-      text-align: left;
-    }
     .section-content p {
+      color: var(--text);
       margin-bottom: 0.7rem;
+      font-size: 0.9rem;
       line-height: 1.6;
     }
 
-    /* === Skills config === */
+    /* skills grid extended – all skills from resume */
     .skills-config {
       font-size: 0.82rem;
       text-align: left;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.65rem;
     }
     .skill-row {
       display: grid;
-      grid-template-columns: 100px auto;
-      gap: 0.8rem;
+      grid-template-columns: 145px auto;
+      gap: 1rem;
       align-items: baseline;
     }
     .skill-key {
       color: var(--accent);
-      opacity: 0.85;
+      opacity: 0.9;
       font-size: 0.78rem;
+      font-weight: 500;
     }
-    .skill-val { color: var(--text); }
+    .skill-val {
+      color: var(--text);
+      word-break: break-word;
+    }
 
-    /* === Project entries === */
+    /* projects list (already present, keep untouched) */
     .projects-list {
       display: flex;
       flex-direction: column;
@@ -322,7 +270,6 @@
     .proj-num {
       color: var(--dim);
       font-size: 0.75rem;
-      font-feature-settings: "tnum";
     }
     .proj-num::before { content: '['; opacity: 0.6; }
     .proj-num::after  { content: ']'; opacity: 0.6; }
@@ -339,36 +286,69 @@
     .proj-blurb {
       color: var(--text);
       font-size: 0.83rem;
-      line-height: 1.4;
     }
     .proj-detail {
       color: var(--dim);
       font-size: 0.76rem;
       margin-top: 0.25rem;
-      line-height: 1.4;
     }
     .proj-detail::before { content: '→ '; opacity: 0.7; }
 
-    /* === Scrollable body section for long content === */
-    .body-section {
-      max-height: 55vh;
-      overflow-y: auto;
-      padding-right: 0.4rem;
+    .links-list {
+      list-style: none;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      text-align: left;
     }
-    .body-section::-webkit-scrollbar { width: 3px; }
-    .body-section::-webkit-scrollbar-track { background: transparent; }
-    .body-section::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 2px;
+    .links-list li {
+      display: grid;
+      grid-template-columns: 90px auto;
+      gap: 0.8rem;
+      align-items: baseline;
     }
-    .body-section::-webkit-scrollbar-thumb:hover {
-      background: var(--accent-soft);
+    .links-list .key { color: var(--dim); }
+    .links-list .key::before { content: '· '; }
+    .links-list a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed transparent;
+      transition: border-color 0.2s ease;
     }
-
-    /* === Static text in links list (non-link values) === */
+    .links-list a:hover { border-bottom-color: var(--accent); }
     .val-text { color: var(--text); }
 
-    /* === Audio toggle === */
+    .footer-line {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--dim);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      z-index: 5;
+      opacity: 0.65;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-line::before { content: '~/'; color: var(--accent); opacity: 0.7; }
+    .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+      margin-left: 0.3rem;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
     .audio-toggle {
       position: fixed;
       bottom: 1rem;
@@ -387,416 +367,304 @@
       gap: 0.5rem;
       transition: color 0.25s ease, border-color 0.25s ease;
     }
-
     .audio-toggle:hover {
       color: var(--text);
       border-color: var(--accent-soft);
     }
-
     .audio-toggle.playing {
       color: var(--accent);
       border-color: var(--accent-soft);
     }
-
-    .audio-toggle.playing .audio-icon {
-      animation: note-pulse 1.6s ease-in-out infinite;
-    }
-
-    @keyframes note-pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
     .audio-icon {
       font-size: 0.9rem;
       line-height: 1;
     }
-
-    .footer-line {
-      position: fixed;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--dim);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      z-index: 5;
-      opacity: 0.65;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    @keyframes note-pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    .audio-toggle.playing .audio-icon {
+      animation: note-pulse 1.6s ease-in-out infinite;
     }
 
-    .footer-line::before { content: '~/'; color: var(--accent); opacity: 0.7; }
-
-    .pulse {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 6px var(--accent);
-      animation: pulse 2s ease-in-out infinite;
-      margin-left: 0.3rem;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.3); }
-    }
-
-    /* Mobile */
     @media (max-width: 600px) {
       .morph-section { font-size: 0.5rem; }
       main { padding: 5rem 1rem 4rem; }
-      #nav-buttons { gap: 0.1rem; }
+      .skill-row { grid-template-columns: 120px auto; gap: 0.7rem; }
       .nav-btn { font-size: 0.7rem; padding: 0.3rem 0.4rem; }
-      .links-list li { grid-template-columns: 70px auto; gap: 0.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="ambient-container" aria-hidden="true"></div>
+<div class="ambient-container" aria-hidden="true"></div>
 
-  <nav class="controls">
-    <div id="nav-buttons" aria-label="Primary navigation"></div>
-  </nav>
+<nav class="controls">
+  <div id="nav-buttons" aria-label="Primary navigation"></div>
+</nav>
 
-  <main>
-    <pre class="morph-section" aria-live="polite"></pre>
-    <div class="body-section" id="body"></div>
-  </main>
+<main>
+  <pre class="morph-section" aria-live="polite"></pre>
+  <div class="body-section" id="body"></div>
+</main>
 
-  <div class="footer-line">.session<span class="pulse"></span></div>
+<div class="footer-line">.session<span class="pulse"></span></div>
 
-  <audio id="bg-music" loop preload="auto">
-    <source src="https://r2.guns.lol/626f615f-e19b-4b52-abd9-0ce0f9678bf0.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bg-music" loop preload="auto">
+  <source src="https://r2.guns.lol/626f615f-e19b-4b52-abd9-0ce0f9678bf0.mp3" type="audio/mpeg">
+</audio>
 
-  <button class="audio-toggle" id="audio-toggle" aria-label="Toggle background music">
-    <span class="audio-icon">♪</span>
-    <span class="audio-state">off</span>
-  </button>
+<button class="audio-toggle" id="audio-toggle" aria-label="Toggle background music">
+  <span class="audio-icon">♪</span>
+  <span class="audio-state">off</span>
+</button>
 
-  <script>
-    // ====================== ASCII art per section ======================
-    const ascii = {
-      home: ` █████╗ ██████╗ ██████╗ ██╗   ██╗██╗     
+<script>
+  // ===================== ASCII art for each section =====================
+  const ascii = {
+    home: ` █████╗ ██████╗ ██████╗ ██╗   ██╗██╗     
 ██╔══██╗██╔══██╗██╔══██╗██║   ██║██║     
 ███████║██████╔╝██║  ██║██║   ██║██║     
 ██╔══██║██╔══██╗██║  ██║██║   ██║██║     
 ██║  ██║██████╔╝██████╔╝╚██████╔╝███████╗
 ╚═╝  ╚═╝╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝`,
-
-      gaffy: ` ██████╗  █████╗ ███████╗███████╗██╗   ██╗
+    gaffy: ` ██████╗  █████╗ ███████╗███████╗██╗   ██╗
 ██╔════╝ ██╔══██╗██╔════╝██╔════╝╚██╗ ██╔╝
 ██║  ███╗███████║█████╗  █████╗   ╚████╔╝ 
 ██║   ██║██╔══██║██╔══╝  ██╔══╝    ╚██╔╝  
 ╚██████╔╝██║  ██║██║     ██║        ██║   
  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝        ╚═╝   `,
-
-      about:    `▄▀█ █▄▄ █▀█ █░█ ▀█▀
+    about:    `▄▀█ █▄▄ █▀█ █░█ ▀█▀
 █▀█ █▄█ █▄█ █▄█ ░█░`,
-
-      skills:   `█▀ █▄▀ █ █░░ █░░ █▀
+    skills:   `█▀ █▄▀ █ █░░ █░░ █▀
 ▄█ █░█ █ █▄▄ █▄▄ ▄█`,
-
-      projects: `█▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀ █▀
+    projects: `█▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀ █▀
 █▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░ ▄█`,
-
-      contact:  `█▀▀ █▀█ █▄░█ ▀█▀ ▄▀█ █▀▀ ▀█▀
+    contact:  `█▀▀ █▀█ █▄░█ ▀█▀ ▄▀█ █▀▀ ▀█▀
 █▄▄ █▄█ █░▀█ ░█░ █▀█ █▄▄ ░█░`
-    };
+  };
 
-    // ====================== Section body content ======================
-    const bodies = {
-      home: `
-        <p class="tagline">/ Computer Science <span>//</span> Developer /</p>
-        <p>3rd year @ ontario tech · building reliable software</p>
-      `,
-      about: `
-        <div class="cmd-label">cat about.txt</div>
-        <div class="section-content">
-          <p>3rd year computer science @ ontario tech university. focused on the parts of programming that get harder the more you understand them // algorithm design, software architecture, and quality assurance.</p>
-          <p>i build things that handle the edge cases nobody asks about: multi-threaded servers that don't deadlock, naive bayes classifiers that survive unseen words, data pipelines that don't break on bad input.</p>
-          <p>strong math foundation in linear algebra, discrete math, and numerical methods // and i like translating models into working code.</p>
-        </div>
-      `,
-      skills: `
-        <div class="cmd-label">tree skills/</div>
-        <div class="skills-config">
-          <div class="skill-row"><span class="skill-key">languages</span><span class="skill-val">java · python · c++ · sql · bash · latex</span></div>
-          <div class="skill-row"><span class="skill-key">algorithms</span><span class="skill-val">divide-and-conquer · greedy · dp · branch-and-bound</span></div>
-          <div class="skill-row"><span class="skill-key">classics</span><span class="skill-val">huffman · edit-distance · knapsack · radix · max-heap</span></div>
-          <div class="skill-row"><span class="skill-key">patterns</span><span class="skill-val">singleton · iterator · facade · mvc</span></div>
-          <div class="skill-row"><span class="skill-key">networking</span><span class="skill-val">tcp sockets · multi-threading · client-server</span></div>
-          <div class="skill-row"><span class="skill-key">testing</span><span class="skill-val">unit · integration · system · black/white-box</span></div>
-          <div class="skill-row"><span class="skill-key">data</span><span class="skill-val">pandas · numpy · sqlite · etl pipelines</span></div>
-          <div class="skill-row"><span class="skill-key">gui</span><span class="skill-val">java swing · 2d graphics · tkinter</span></div>
-          <div class="skill-row"><span class="skill-key">math</span><span class="skill-val">linear algebra · discrete · stats · numerical</span></div>
-          <div class="skill-row"><span class="skill-key">agile</span><span class="skill-val">scrum · kanban · xp · code review</span></div>
-          <div class="skill-row"><span class="skill-key">tools</span><span class="skill-val">git · maven · intellij · vscode</span></div>
-          <div class="skill-row"><span class="skill-key">spoken</span><span class="skill-val">english · urdu · hindi</span></div>
-        </div>
-      `,
-      projects: `
-        <div class="cmd-label">ls -la projects/</div>
-        <div class="projects-list">
-          <div class="project-entry">
-            <div class="project-header"><span class="proj-num">01</span><span class="proj-name">inventory-management-system</span></div>
-            <div class="proj-tags">python · tkinter · csv · back-end lead</div>
-            <div class="proj-blurb">multi-user inventory tracker with role-based access (admin / employee).</div>
-            <div class="proj-detail">csv-backed store · 19 test cases · 95% pass rate · uml class &amp; sequence diagrams</div>
-          </div>
-          <div class="project-entry">
-            <div class="project-header"><span class="proj-num">02</span><span class="proj-name">multiplayer-hangman</span></div>
-            <div class="proj-tags">java · maven · tcp</div>
-            <div class="proj-blurb">multi-threaded networked hangman with single-player, multiplayer, and word-bank editor modes.</div>
-            <div class="proj-detail">tcp server on port 9090 · ClientHandler threads · synchronized GameSyncState across clients</div>
-          </div>
-          <div class="project-entry">
-            <div class="project-header"><span class="proj-num">03</span><span class="proj-name">bayesian-spam-detector</span></div>
-            <div class="proj-tags">java · swing · naive bayes</div>
-            <div class="proj-blurb">naive bayes classifier built from scratch over a labelled email corpus.</div>
-            <div class="proj-detail">log-space arithmetic to avoid underflow · laplace smoothing · accuracy reported in JTable GUI</div>
-          </div>
-          <div class="project-entry">
-            <div class="project-header"><span class="proj-num">04</span><span class="proj-name">tcp-file-sharing</span></div>
-            <div class="proj-tags">java · sockets · swing</div>
-            <div class="proj-blurb">client-server file sharing with custom DIR / UPLOAD / DOWNLOAD protocol.</div>
-            <div class="proj-detail">ClientConnectionHandler thread per connection · split-view JList GUI with auto-refresh</div>
-          </div>
-          <div class="project-entry">
-            <div class="project-header"><span class="proj-num">05</span><span class="proj-name">algorithm-portfolio</span></div>
-            <div class="proj-tags">java · python · latex</div>
-            <div class="proj-blurb">classical algorithm implementations with correctness proofs and complexity analysis.</div>
-            <div class="proj-detail">max-heap from clrs · peak-finding O(log n) · edit distance · knapsack · huffman · radix sort</div>
-          </div>
-          <div class="project-entry">
-            <div class="project-header"><span class="proj-num">06</span><span class="proj-name">banking-system-integration</span></div>
-            <div class="proj-tags">unix · bash · qa</div>
-            <div class="proj-blurb">front-end + back-end banking simulation mirroring real financial system architecture.</div>
-            <div class="proj-detail">unix shell automation · etl-style validation · multi-day continuous-operation simulation</div>
-          </div>
-          <div class="project-entry">
-            <div class="project-header"><span class="proj-num">07</span><span class="proj-name">numerical-methods</span></div>
-            <div class="proj-tags">python · matplotlib · latex</div>
-            <div class="proj-blurb">root-finding and matrix routines for nonlinear scientific problems.</div>
-            <div class="proj-detail">newton's method · bisection · convergence checks · flop-count verification · error analysis</div>
-          </div>
-          <div class="project-entry">
-            <div class="project-header"><span class="proj-num">08</span><span class="proj-name">graphing-calculator</span></div>
-            <div class="proj-tags">java · 2d graphics · swing</div>
-            <div class="proj-blurb">desmos-style calculator for polynomial, log, and trig functions.</div>
-            <div class="proj-detail">first / second derivatives · newton's-method root finding · live-rendered plots</div>
-          </div>
-        </div>
-      `,
-      contact: `
-        <div class="cmd-label">whois abdul</div>
-        <ul class="links-list">
-          <li><span class="key">email</span><a href="mailto:abdulghafour.ahmed@ontariotechu.net">abdulghafour.ahmed@ontariotechu.net</a></li>
-          <li><span class="key">github</span><a href="https://github.com/abdulgafour" target="_blank" rel="noopener noreferrer">abdulgafour</a></li>
-          <li><span class="key">linkedin</span><a href="#" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/abdul-ghafour-ahmed-80b5a9332/</a></li>
-          <li><span class="key">location</span><span class="val-text">oshawa, ontario · ca</span></li>
-          <li><span class="key">school</span><span class="val-text">ontario tech university · cs '28</span></li>
-        </ul>
-      `
-    };
+  // ========== COMPLETE SKILLS: All items from Abdul's resume ==========
+  const bodies = {
+    home: `
+      <p class="tagline">/ Computer Science <span>//</span> Developer /</p>
+      <p>3rd year @ ontario tech · building reliable software, algorithms, distributed systems</p>
+    `,
+    about: `
+      <div class="cmd-label">cat about.txt</div>
+      <div class="section-content">
+        <p>3rd year computer science @ Ontario Tech University. deep into algorithm design, software architecture, concurrency, and quality assurance. I build systems that handle edge cases others ignore: multi‑threaded servers that never deadlock, Bayesian filters that survive unseen tokens, ETL pipelines that reject malformed input cleanly.</p>
+        <p>Strong mathematical foundation — linear algebra, discrete math, probability, numerical methods — and a drive to translate models into robust, verifiable code. advocate for rigorous testing, clean interfaces, and code that tells a story.</p>
+      </div>
+    `,
+    skills: `
+      <div class="cmd-label">tree -L 2 skills/</div>
+      <div class="skills-config">
+        <div class="skill-row"><span class="skill-key">languages</span><span class="skill-val">Java · Python · C++ · SQL · Unix shell scripting · LaTeX</span></div>
+        <div class="skill-row"><span class="skill-key">algorithms & data structures</span><span class="skill-val">divide-and-conquer, greedy, DP, recursion, branch-and-bound · asymptotic analysis (Big-O) · heaps, hash maps, trees, graphs · sorting (radix, merge) · Huffman coding · edit distance (DP) · fractional knapsack · peak-finding O(log n) · majority-element</span></div>
+        <div class="skill-row"><span class="skill-key">software engineering</span><span class="skill-val">OOP, design patterns (Singleton, Iterator, Facade), MVC architecture · software process (requirements→integration) · Agile (Scrum, Kanban, XP) · code reviews, refactoring, static analysis · UML (class/sequence diagrams)</span></div>
+        <div class="skill-row"><span class="skill-key">systems & networking</span><span class="skill-val">multi-threaded client‑server, socket programming (TCP), concurrent request handling (ClientHandler) · file I/O, CSV parsing · build tools (Maven) · version control (Git/GitHub) · makefile automation</span></div>
+        <div class="skill-row"><span class="skill-key">testing & QA</span><span class="skill-val">unit, integration, system · black‑box, white‑box, exploratory · test plan design, defect tracking, system validation · 95% pass rate documented test suites</span></div>
+        <div class="skill-row"><span class="skill-key">mathematics & numerical methods</span><span class="skill-val">linear algebra (eigenvalues, least squares, regression) · calculus (single & multi‑variable) · discrete math (logic, set theory, combinatorics, graph theory) · probability (distributions, inference, confidence intervals) · root-finding (Newton, bisection) · polynomial interpolation · numerical differentiation/integration · FLOP-count verification</span></div>
+        <div class="skill-row"><span class="skill-key">data & analytics</span><span class="skill-val">Pandas, NumPy, SQLite · Excel (automation, tabulation) · ETL-style workflows · structured data processing, transformation, validation · CSV/UTF-8 integrity handling</span></div>
+        <div class="skill-row"><span class="skill-key">GUI & visualization</span><span class="skill-val">Java Swing (JTable, JFileChooser, JMenuBar, JXDatePicker), Java 2D graphics · Python Tkinter · real-time charts (stock, weather pie chart) · Desmos-style graphing calculator</span></div>
+        <div class="skill-row"><span class="skill-key">tools & IDE</span><span class="skill-val">IntelliJ IDEA, VS Code, Maven, Git/GitHub · Microsoft Office (Word, Excel, PowerPoint, Access) · LaTeX write-ups for algorithm proofs · JUnit, exploratory testing tooling</span></div>
+        <div class="skill-row"><span class="skill-key">business & communication</span><span class="skill-val">translate technical outputs into business insights · performance drivers, trade-off analysis · cross‑functional collaboration · technical documentation</span></div>
+        <div class="skill-row"><span class="skill-key">languages (spoken)</span><span class="skill-val">English · Urdu · Hindi</span></div>
+        <div class="skill-row"><span class="skill-key">other competencies</span><span class="skill-val">role‑based access control (admin/employee) · CSV persistent stores · backend architecture · concurrent state sync (GameSyncState) · log-space arithmetic, Laplace smoothing · numerical error analysis, least‑squares fitting</span></div>
+      </div>
+    `,
+    projects: `
+      <div class="cmd-label">ls -la projects/</div>
+      <div class="projects-list">
+        <div class="project-entry"><div class="project-header"><span class="proj-num">01</span><span class="proj-name">inventory-management-system</span></div><div class="proj-tags">python · tkinter · csv · back-end lead</div><div class="proj-blurb">multi-user inventory tracker with role‑based access (admin/employee), CSV-backed store, 19 test cases (95% pass).</div><div class="proj-detail">UML class & sequence diagrams, input validation, UTF-8 integrity, makefile build</div></div>
+        <div class="project-entry"><div class="project-header"><span class="proj-num">02</span><span class="proj-name">multiplayer-hangman</span></div><div class="proj-tags">java · maven · tcp</div><div class="proj-blurb">multi-threaded networked hangman: single‑player, co-op, word-bank editor.</div><div class="proj-detail">TCP server port 9090, ClientHandler threads, GameSyncState across clients, persistent logging</div></div>
+        <div class="project-entry"><div class="project-header"><span class="proj-num">03</span><span class="proj-name">bayesian-spam-detector</span></div><div class="proj-tags">java · swing · naive bayes</div><div class="proj-blurb">naive bayes classifier built from scratch over labelled email corpus.</div><div class="proj-detail">log-space arithmetic, Laplace smoothing, JTable GUI for accuracy/precision reporting, JFileChooser corpus picker</div></div>
+        <div class="project-entry"><div class="project-header"><span class="proj-num">04</span><span class="proj-name">tcp-file-sharing</span></div><div class="proj-tags">java · sockets · swing</div><div class="proj-blurb">client‑server file sharing with DIR/UPLOAD/DOWNLOAD protocol, dedicated connection handler threads.</div><div class="proj-detail">split-view JList GUI, automatic refresh, synchronized local/remote views</div></div>
+        <div class="project-entry"><div class="project-header"><span class="proj-num">05</span><span class="proj-name">algorithm-portfolio</span></div><div class="proj-tags">java · python · latex</div><div class="proj-blurb">classic algorithm implementations with correctness proofs & complexity analysis.</div><div class="proj-detail">max-heap (CLRS style), peak-finding O(log n), edit distance DP, radix sort, knapsack, Huffman coding, divide-and-conquer dominant element</div></div>
+        <div class="project-entry"><div class="project-header"><span class="proj-num">06</span><span class="proj-name">banking-system-integration</span></div><div class="proj-tags">unix · bash · qa</div><div class="proj-blurb">front‑end + backend banking simulation, real‑world financial system architecture.</div><div class="proj-detail">unix shell automation, ETL-style validation, multi‑day continuous simulation, transaction merging</div></div>
+        <div class="project-entry"><div class="project-header"><span class="proj-num">07</span><span class="proj-name">numerical-methods</span></div><div class="proj-tags">python · matplotlib · latex</div><div class="proj-blurb">nonlinear root-finding, matrix operations, error analysis.</div><div class="proj-detail">Newton/bisection, convergence checks, lower-triangular product (FLOP closed form), polynomial interpolation, least‑squares fitting</div></div>
+        <div class="project-entry"><div class="project-header"><span class="proj-num">08</span><span class="proj-name">graphing-calculator</span></div><div class="proj-tags">java · 2d graphics · swing</div><div class="proj-blurb">Desmos‑style calculator: polynomial, log, trig functions with derivatives.</div><div class="proj-detail">first/second derivative, Newton's method root finder, interactive JFrame rendering</div></div>
+        <div class="project-entry"><div class="project-header"><span class="proj-num">09</span><span class="proj-name">multi-threaded atm</span></div><div class="proj-tags">java · sockets · concurrency</div><div class="proj-blurb">ATM client‑server supporting concurrent balance, deposits, withdrawals.</div><div class="proj-detail">thread‑safe account operations, socket‑based command protocol</div></div>
+      </div>
+    `,
+    contact: `
+      <div class="cmd-label">whois abdul</div>
+      <ul class="links-list">
+        <li><span class="key">email</span><a href="mailto:abdulghafour.ahmed@ontariotechu.net">abdulghafour.ahmed@ontariotechu.net</a></li>
+        <li><span class="key">github</span><a href="https://github.com/abdulgafour" target="_blank" rel="noopener noreferrer">github/abdulgafour</a></li>
+        <li><span class="key">linkedin</span><a href="https://www.linkedin.com/in/abdul-ghafour-ahmed-80b5a9332/" target="_blank" rel="noopener noreferrer">linkedin.com/in/abdul-ghafour</a></li>
+        <li><span class="key">location</span><span class="val-text">oshawa, ontario · canada</span></li>
+        <li><span class="key">education</span><span class="val-text">Ontario Tech University · BSc CS (2028) · focus: algorithms, software systems, QA</span></li>
+      </ul>
+    `
+  };
 
-    // ====================== Nav setup ======================
-    const navContainer = document.getElementById('nav-buttons');
-    const morphEl = document.querySelector('.morph-section');
-    const bodyEl = document.getElementById('body');
-    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-    let current = 'home';
-    let morphTimer = null;
+  // ====================== NAVIGATION & MORPH ======================
+  const navContainer = document.getElementById('nav-buttons');
+  const morphEl = document.querySelector('.morph-section');
+  const bodyEl = document.getElementById('body');
+  const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+  let current = 'home';
+  let morphTimer = null;
+  let homeCycleTimer = null;
 
-    sections.forEach(name => {
-      const btn = document.createElement('button');
-      btn.className = 'nav-btn' + (name === 'home' ? ' active' : '');
-      btn.textContent = name;
-      btn.dataset.section = name;
-      btn.addEventListener('click', () => switchTo(name));
-      navContainer.appendChild(btn);
+  sections.forEach(name => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (name === 'home' ? ' active' : '');
+    btn.textContent = name;
+    btn.dataset.section = name;
+    btn.addEventListener('click', () => switchTo(name));
+    navContainer.appendChild(btn);
+  });
+
+  function switchTo(name) {
+    if (name === current) return;
+    current = name;
+    document.querySelectorAll('.nav-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.section === name);
     });
+    bodyEl.classList.add('fading');
+    setTimeout(() => {
+      morphTo(ascii[name]);
+      bodyEl.innerHTML = bodies[name];
+      bodyEl.classList.remove('fading');
+      if (name === 'home') startHomeCycle();
+      else stopHomeCycle();
+    }, 320);
+  }
 
-    function switchTo(name) {
-      if (name === current) return;
-      current = name;
-      document.querySelectorAll('.nav-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.section === name);
-      });
-      bodyEl.classList.add('fading');
-      setTimeout(() => {
-        morphTo(ascii[name]);
-        bodyEl.innerHTML = bodies[name];
-        bodyEl.classList.remove('fading');
-        if (name === 'home') startHomeCycle();
-        else stopHomeCycle();
-      }, 320);
-    }
-
-    // ====================== Home name cycling ======================
-    const homeVariants = ['home', 'gaffy'];
+  function startHomeCycle() {
+    stopHomeCycle();
     let homeIdx = 0;
-    let homeCycleTimer = null;
+    const variants = ['home', 'gaffy'];
+    homeCycleTimer = setInterval(() => {
+      homeIdx = (homeIdx + 1) % variants.length;
+      morphTo(ascii[variants[homeIdx]]);
+    }, 6000);
+  }
 
-    function startHomeCycle() {
-      stopHomeCycle();
-      homeIdx = 0;
-      homeCycleTimer = setInterval(() => {
-        homeIdx = (homeIdx + 1) % homeVariants.length;
-        morphTo(ascii[homeVariants[homeIdx]]);
-      }, 6000);
-    }
+  function stopHomeCycle() {
+    if (homeCycleTimer) clearInterval(homeCycleTimer);
+    homeCycleTimer = null;
+  }
 
-    function stopHomeCycle() {
-      if (homeCycleTimer) {
-        clearInterval(homeCycleTimer);
-        homeCycleTimer = null;
+  // morph animation effect
+  const charset = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*<>?/\\|~+=';
+  const blockPool = '█▄▀▌▐▒░▓';
+  function morphTo(target) {
+    clearInterval(morphTimer);
+    const len = target.length;
+    let frame = 0;
+    const totalFrames = 22;
+    morphTimer = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      let out = '';
+      for (let i = 0; i < len; i++) {
+        const ch = target[i];
+        if (ch === '\n' || ch === ' ') { out += ch; continue; }
+        const charProgress = i / len;
+        const noise = Math.random() * 0.15;
+        if (progress >= charProgress + noise) { out += ch; }
+        else if (/[█▄▀▌▐▒░▓╗╔╝╚║═╠╣╦╩╬]/.test(ch)) { out += blockPool[Math.floor(Math.random() * blockPool.length)]; }
+        else { out += charset[Math.floor(Math.random() * charset.length)]; }
       }
-    }
-
-    // ====================== Morph animation ======================
-    const charset = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*<>?/\\|~+=';
-    const blockPool = '█▄▀▌▐▒░▓';
-
-    function morphTo(target) {
-      clearInterval(morphTimer);
-      const len = target.length;
-      const totalFrames = 22;
-      let frame = 0;
-
-      morphTimer = setInterval(() => {
-        frame++;
-        const progress = frame / totalFrames;
-        let out = '';
-
-        for (let i = 0; i < len; i++) {
-          const ch = target[i];
-          if (ch === '\n' || ch === ' ') { out += ch; continue; }
-
-          const charProgress = i / len;
-          const noise = Math.random() * 0.15;
-
-          if (progress >= charProgress + noise) {
-            out += ch;
-          } else if (/[█▄▀▌▐▒░▓╗╔╝╚║═╠╣╦╩╬]/.test(ch)) {
-            out += blockPool[Math.floor(Math.random() * blockPool.length)];
-          } else {
-            out += charset[Math.floor(Math.random() * charset.length)];
-          }
-        }
-
-        morphEl.textContent = out;
-        if (frame >= totalFrames) {
-          clearInterval(morphTimer);
-          morphEl.textContent = target;
-        }
-      }, 40);
-    }
-
-    // ====================== Floating particles ======================
-    function spawnParticle() {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.left = Math.random() * 100 + 'vw';
-      p.style.animationDuration = (8 + Math.random() * 12) + 's';
-      p.style.opacity = String(0.2 + Math.random() * 0.4);
-      document.body.appendChild(p);
-      setTimeout(() => p.remove(), 22000);
-    }
-
-    setInterval(spawnParticle, 800);
-    for (let i = 0; i < 6; i++) setTimeout(spawnParticle, i * 400);
-
-    // ====================== Initial render ======================
-    morphTo(ascii.home);
-    bodyEl.innerHTML = bodies.home;
-    startHomeCycle();
-
-    // ====================== Keyboard navigation ======================
-    document.addEventListener('keydown', (e) => {
-      const idx = sections.indexOf(current);
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        switchTo(sections[(idx + 1) % sections.length]);
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        switchTo(sections[(idx - 1 + sections.length) % sections.length]);
+      morphEl.textContent = out;
+      if (frame >= totalFrames) {
+        clearInterval(morphTimer);
+        morphEl.textContent = target;
       }
-    });
+    }, 40);
+  }
 
-    // ====================== Background music ======================
-    const audio = document.getElementById('bg-music');
-    const audioToggle = document.getElementById('audio-toggle');
-    const audioIcon = audioToggle.querySelector('.audio-icon');
-    const audioState = audioToggle.querySelector('.audio-state');
-    const TARGET_VOLUME = 0.15; 
-    audio.volume = 0;
+  // particles
+  function spawnParticle() {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.opacity = String(0.2 + Math.random() * 0.4);
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 22000);
+  }
+  setInterval(spawnParticle, 800);
+  for (let i = 0; i < 6; i++) setTimeout(spawnParticle, i * 400);
 
-    function updateAudioUI() {
-      const playing = !audio.paused;
-      audioToggle.classList.toggle('playing', playing);
-      audioState.textContent = playing ? 'on' : 'off';
-      audioIcon.textContent = playing ? '♫' : '♪';
-    }
+  // initial render
+  morphTo(ascii.home);
+  bodyEl.innerHTML = bodies.home;
+  startHomeCycle();
 
-    function fadeVolumeTo(target) {
-      clearInterval(audio._fadeTimer);
-      audio._fadeTimer = setInterval(() => {
-        const step = audio.volume < target ? 0.015 : -0.03;
-        const next = audio.volume + step;
-        if ((step > 0 && next >= target) || (step < 0 && next <= target)) {
-          audio.volume = target;
-          clearInterval(audio._fadeTimer);
-          if (target === 0) audio.pause();
-        } else {
-          audio.volume = Math.max(0, Math.min(1, next));
-        }
-      }, 50);
-    }
+  // keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const idx = sections.indexOf(current);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') switchTo(sections[(idx + 1) % sections.length]);
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') switchTo(sections[(idx - 1 + sections.length) % sections.length]);
+  });
 
-    async function playMusic() {
-      try {
-        await audio.play();
-        fadeVolumeTo(TARGET_VOLUME);
+  // background music (low volume, ambient)
+  const audio = document.getElementById('bg-music');
+  const audioToggle = document.getElementById('audio-toggle');
+  const audioStateSpan = audioToggle.querySelector('.audio-state');
+  const audioIconSpan = audioToggle.querySelector('.audio-icon');
+  const TARGET_VOL = 0.15;
+  audio.volume = 0;
+
+  function updateAudioUI() {
+    const playing = !audio.paused;
+    audioToggle.classList.toggle('playing', playing);
+    audioStateSpan.textContent = playing ? 'on' : 'off';
+    audioIconSpan.textContent = playing ? '♫' : '♪';
+  }
+
+  function fadeVolumeTo(target) {
+    clearInterval(audio._fadeTimer);
+    audio._fadeTimer = setInterval(() => {
+      const step = audio.volume < target ? 0.015 : -0.03;
+      const next = audio.volume + step;
+      if ((step > 0 && next >= target) || (step < 0 && next <= target)) {
+        audio.volume = target;
+        clearInterval(audio._fadeTimer);
+        if (target === 0) audio.pause();
         updateAudioUI();
-      } catch (err) {
-        // play blocked -> UI stays in 'off' state
-        updateAudioUI();
+      } else {
+        audio.volume = Math.max(0, Math.min(1, next));
       }
+    }, 50);
+  }
+
+  async function playMusic() {
+    try {
+      await audio.play();
+      fadeVolumeTo(TARGET_VOL);
+    } catch (err) { updateAudioUI(); }
+  }
+  function pauseMusic() {
+    fadeVolumeTo(0);
+    audioToggle.classList.remove('playing');
+    audioStateSpan.textContent = 'off';
+    audioIconSpan.textContent = '♪';
+  }
+  audioToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (audio.paused) playMusic();
+    else pauseMusic();
+  });
+  window.addEventListener('load', async () => {
+    try {
+      await audio.play();
+      fadeVolumeTo(TARGET_VOL);
+    } catch {
+      const init = () => {
+        if (audio.paused) playMusic();
+        document.removeEventListener('click', init);
+        document.removeEventListener('keydown', init);
+      };
+      document.addEventListener('click', init);
+      document.addEventListener('keydown', init);
+      updateAudioUI();
     }
-
-    function pauseMusic() {
-      fadeVolumeTo(0);
-      // updateAudioUI happens on actual pause via fade callback
-      audioToggle.classList.remove('playing');
-      audioState.textContent = 'off';
-      audioIcon.textContent = '♪';
-    }
-
-    audioToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (audio.paused) playMusic();
-      else pauseMusic();
-    });
-
-    // Try autoplay on load. If blocked, start on first user interaction.
-    window.addEventListener('load', async () => {
-      try {
-        await audio.play();
-        fadeVolumeTo(TARGET_VOLUME);
-        updateAudioUI();
-      } catch {
-        const startOnInteraction = () => {
-          if (audio.paused) playMusic();
-          document.removeEventListener('click', startOnInteraction);
-          document.removeEventListener('keydown', startOnInteraction);
-        };
-        document.addEventListener('click', startOnInteraction);
-        document.addEventListener('keydown', startOnInteraction);
-        updateAudioUI();
-      }
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
