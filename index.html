@@ -323,6 +323,13 @@
 ██║  ██║██████╔╝██████╔╝╚██████╔╝███████╗
 ╚═╝  ╚═╝╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝`,
 
+      gaffy: ` ██████╗  █████╗ ███████╗███████╗██╗   ██╗
+██╔════╝ ██╔══██╗██╔════╝██╔════╝╚██╗ ██╔╝
+██║  ███╗███████║█████╗  █████╗   ╚████╔╝ 
+██║   ██║██╔══██║██╔══╝  ██╔══╝    ╚██╔╝  
+╚██████╔╝██║  ██║██║     ██║        ██║   
+ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝        ╚═╝   `,
+
       about: `▄▀█ █▄▄ █▀█ █░█ ▀█▀
 █▀█ █▄█ █▄█ █▄█ ░█░`,
 
@@ -393,7 +400,30 @@
         morphTo(ascii[name]);
         bodyEl.innerHTML = bodies[name];
         bodyEl.classList.remove('fading');
+        if (name === 'home') startHomeCycle();
+        else stopHomeCycle();
       }, 320);
+    }
+
+    // ====================== Home name cycling ======================
+    const homeVariants = ['home', 'gaffy'];
+    let homeIdx = 0;
+    let homeCycleTimer = null;
+
+    function startHomeCycle() {
+      stopHomeCycle();
+      homeIdx = 0;
+      homeCycleTimer = setInterval(() => {
+        homeIdx = (homeIdx + 1) % homeVariants.length;
+        morphTo(ascii[homeVariants[homeIdx]]);
+      }, 3000);
+    }
+
+    function stopHomeCycle() {
+      if (homeCycleTimer) {
+        clearInterval(homeCycleTimer);
+        homeCycleTimer = null;
+      }
     }
 
     // ====================== Morph animation ======================
@@ -452,6 +482,7 @@
     // ====================== Initial render ======================
     morphTo(ascii.home);
     bodyEl.innerHTML = bodies.home;
+    startHomeCycle();
 
     // ====================== Keyboard navigation ======================
     document.addEventListener('keydown', (e) => {
