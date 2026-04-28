@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>abdul gafour</title>
-  <meta name="description" content="abdul gafour — computer science student & developer">
+  <meta name="description" content="abdul gafour // computer science student & developer">
   <meta name="theme-color" content="#e6c875">
   <meta name="author" content="abdul gafour">
   <meta property="og:title" content="abdul gafour">
@@ -368,6 +368,50 @@
     /* === Static text in links list (non-link values) === */
     .val-text { color: var(--text); }
 
+    /* === Audio toggle === */
+    .audio-toggle {
+      position: fixed;
+      bottom: 1rem;
+      right: 1.5rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--dim);
+      font-family: inherit;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 0.7rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .audio-toggle:hover {
+      color: var(--text);
+      border-color: var(--accent-soft);
+    }
+
+    .audio-toggle.playing {
+      color: var(--accent);
+      border-color: var(--accent-soft);
+    }
+
+    .audio-toggle.playing .audio-icon {
+      animation: note-pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes note-pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .audio-icon {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
     .footer-line {
       position: fixed;
       bottom: 1rem;
@@ -423,6 +467,15 @@
   </main>
 
   <div class="footer-line">.session<span class="pulse"></span></div>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://r2.guns.lol/626f615f-e19b-4b52-abd9-0ce0f9678bf0.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="audio-toggle" id="audio-toggle" aria-label="Toggle background music">
+    <span class="audio-icon">♪</span>
+    <span class="audio-state">off</span>
+  </button>
 
   <script>
     // ====================== ASCII art per section ======================
@@ -669,6 +722,79 @@
         switchTo(sections[(idx + 1) % sections.length]);
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         switchTo(sections[(idx - 1 + sections.length) % sections.length]);
+      }
+    });
+
+    // ====================== Background music ======================
+    const audio = document.getElementById('bg-music');
+    const audioToggle = document.getElementById('audio-toggle');
+    const audioIcon = audioToggle.querySelector('.audio-icon');
+    const audioState = audioToggle.querySelector('.audio-state');
+    const TARGET_VOLUME = 0.25; // 25% — quiet, not earrape
+    audio.volume = 0;
+
+    function updateAudioUI() {
+      const playing = !audio.paused;
+      audioToggle.classList.toggle('playing', playing);
+      audioState.textContent = playing ? 'on' : 'off';
+      audioIcon.textContent = playing ? '♫' : '♪';
+    }
+
+    function fadeVolumeTo(target) {
+      clearInterval(audio._fadeTimer);
+      audio._fadeTimer = setInterval(() => {
+        const step = audio.volume < target ? 0.015 : -0.03;
+        const next = audio.volume + step;
+        if ((step > 0 && next >= target) || (step < 0 && next <= target)) {
+          audio.volume = target;
+          clearInterval(audio._fadeTimer);
+          if (target === 0) audio.pause();
+        } else {
+          audio.volume = Math.max(0, Math.min(1, next));
+        }
+      }, 50);
+    }
+
+    async function playMusic() {
+      try {
+        await audio.play();
+        fadeVolumeTo(TARGET_VOLUME);
+        updateAudioUI();
+      } catch (err) {
+        // play blocked — UI stays in 'off' state
+        updateAudioUI();
+      }
+    }
+
+    function pauseMusic() {
+      fadeVolumeTo(0);
+      // updateAudioUI happens on actual pause via fade callback
+      audioToggle.classList.remove('playing');
+      audioState.textContent = 'off';
+      audioIcon.textContent = '♪';
+    }
+
+    audioToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audio.paused) playMusic();
+      else pauseMusic();
+    });
+
+    // Try autoplay on load. If blocked, start on first user interaction.
+    window.addEventListener('load', async () => {
+      try {
+        await audio.play();
+        fadeVolumeTo(TARGET_VOLUME);
+        updateAudioUI();
+      } catch {
+        const startOnInteraction = () => {
+          if (audio.paused) playMusic();
+          document.removeEventListener('click', startOnInteraction);
+          document.removeEventListener('keydown', startOnInteraction);
+        };
+        document.addEventListener('click', startOnInteraction);
+        document.addEventListener('keydown', startOnInteraction);
+        updateAudioUI();
       }
     });
   </script>
