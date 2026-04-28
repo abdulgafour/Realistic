@@ -257,6 +257,117 @@
       font-family: inherit;
     }
 
+    /* === Section command label (e.g. $ cat about.txt) === */
+    .cmd-label {
+      color: var(--dim);
+      font-size: 0.78rem;
+      margin-bottom: 1rem;
+      text-align: left;
+      letter-spacing: 0.02em;
+    }
+    .cmd-label::before { content: '$ '; color: var(--accent); }
+
+    /* === Section content base === */
+    .section-content {
+      text-align: left;
+    }
+    .section-content p {
+      margin-bottom: 0.7rem;
+      line-height: 1.6;
+    }
+
+    /* === Skills config === */
+    .skills-config {
+      font-size: 0.82rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .skill-row {
+      display: grid;
+      grid-template-columns: 100px auto;
+      gap: 0.8rem;
+      align-items: baseline;
+    }
+    .skill-key {
+      color: var(--accent);
+      opacity: 0.85;
+      font-size: 0.78rem;
+    }
+    .skill-val { color: var(--text); }
+
+    /* === Project entries === */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      text-align: left;
+    }
+    .project-entry {
+      border-left: 2px solid var(--border);
+      padding: 0.4rem 0 0.4rem 0.9rem;
+      transition: border-left-color 0.25s ease, transform 0.25s ease;
+    }
+    .project-entry:hover {
+      border-left-color: var(--accent);
+      transform: translateX(2px);
+    }
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7rem;
+      margin-bottom: 0.15rem;
+    }
+    .proj-num {
+      color: var(--dim);
+      font-size: 0.75rem;
+      font-feature-settings: "tnum";
+    }
+    .proj-num::before { content: '['; opacity: 0.6; }
+    .proj-num::after  { content: ']'; opacity: 0.6; }
+    .proj-name {
+      color: var(--accent);
+      font-size: 0.92rem;
+    }
+    .proj-tags {
+      color: var(--dim);
+      font-size: 0.72rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+    .proj-blurb {
+      color: var(--text);
+      font-size: 0.83rem;
+      line-height: 1.4;
+    }
+    .proj-detail {
+      color: var(--dim);
+      font-size: 0.76rem;
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+    .proj-detail::before { content: '→ '; opacity: 0.7; }
+
+    /* === Scrollable body section for long content === */
+    .body-section {
+      max-height: 55vh;
+      overflow-y: auto;
+      padding-right: 0.4rem;
+    }
+    .body-section::-webkit-scrollbar { width: 3px; }
+    .body-section::-webkit-scrollbar-track { background: transparent; }
+    .body-section::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+    .body-section::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-soft);
+    }
+
+    /* === Static text in links list (non-link values) === */
+    .val-text { color: var(--text); }
+
     .footer-line {
       position: fixed;
       bottom: 1rem;
@@ -330,45 +441,112 @@
 ╚██████╔╝██║  ██║██║     ██║        ██║   
  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝        ╚═╝   `,
 
-      about: `▄▀█ █▄▄ █▀█ █░█ ▀█▀
+      about:    `▄▀█ █▄▄ █▀█ █░█ ▀█▀
 █▀█ █▄█ █▄█ █▄█ ░█░`,
 
-      links: `█░░ █ █▄░█ █▄▀ █▀
-█▄▄ █ █░▀█ █░█ ▄█`,
+      skills:   `█▀ █▄▀ █ █░░ █░░ █▀
+▄█ █░█ █ █▄▄ █▄▄ ▄█`,
 
-      pgp:   `█▀█ █▀▀ █▀█
-█▀▀ █▄█ █▀▀`
+      projects: `█▀█ █▀█ █▀█ ░░█ █▀▀ █▀▀ ▀█▀ █▀
+█▀▀ █▀▄ █▄█ █▄█ ██▄ █▄▄ ░█░ ▄█`,
+
+      contact:  `█▀▀ █▀█ █▄░█ ▀█▀ ▄▀█ █▀▀ ▀█▀
+█▄▄ █▄█ █░▀█ ░█░ █▀█ █▄▄ ░█░`
     };
 
     // ====================== Section body content ======================
     const bodies = {
       home: `
         <p class="tagline">/ Computer Science <span>//</span> Developer /</p>
-        <p>building reliable software, one algorithm at a time.</p>
+        <p>3rd year @ ontario tech · building reliable software</p>
       `,
       about: `
-        <p>cs student focused on the parts of programming that get harder the more you understand them — algorithm design, software architecture, and quality assurance.</p>
-        <div class="meta-grid">
-          <span class="key">languages</span><span class="val">c++ · python · java</span>
-          <span class="key">core</span><span class="val">algorithms · data structures · oop</span>
-          <span class="key">eng</span><span class="val">design patterns · testing · qa</span>
-          <span class="key">tools</span><span class="val">git · unix · matlab</span>
+        <div class="cmd-label">cat about.txt</div>
+        <div class="section-content">
+          <p>3rd year computer science @ ontario tech university. focused on the parts of programming that get harder the more you understand them — algorithm design, software architecture, and quality assurance.</p>
+          <p>i build things that handle the edge cases nobody asks about: multi-threaded servers that don't deadlock, naive bayes classifiers that survive unseen words, data pipelines that don't break on bad input.</p>
+          <p>strong math foundation in linear algebra, discrete math, and numerical methods — and i like translating models into working code.</p>
         </div>
       `,
-      links: `
-        <ul class="links-list">
-          <li><span class="key">github</span><a href="https://github.com/abdulgafour" target="_blank" rel="noopener noreferrer">abdulgafour</a></li>
-          <li><span class="key">email</span><a href="mailto:[email protected]">[email protected]</a></li>
-          <li><span class="key">linkedin</span><a href="#" target="_blank" rel="noopener noreferrer">— add url —</a></li>
-        </ul>
+      skills: `
+        <div class="cmd-label">tree skills/</div>
+        <div class="skills-config">
+          <div class="skill-row"><span class="skill-key">languages</span><span class="skill-val">java · python · c++ · sql · bash · latex</span></div>
+          <div class="skill-row"><span class="skill-key">algorithms</span><span class="skill-val">divide-and-conquer · greedy · dp · branch-and-bound</span></div>
+          <div class="skill-row"><span class="skill-key">classics</span><span class="skill-val">huffman · edit-distance · knapsack · radix · max-heap</span></div>
+          <div class="skill-row"><span class="skill-key">patterns</span><span class="skill-val">singleton · iterator · facade · mvc</span></div>
+          <div class="skill-row"><span class="skill-key">networking</span><span class="skill-val">tcp sockets · multi-threading · client-server</span></div>
+          <div class="skill-row"><span class="skill-key">testing</span><span class="skill-val">unit · integration · system · black/white-box</span></div>
+          <div class="skill-row"><span class="skill-key">data</span><span class="skill-val">pandas · numpy · sqlite · etl pipelines</span></div>
+          <div class="skill-row"><span class="skill-key">gui</span><span class="skill-val">java swing · 2d graphics · tkinter</span></div>
+          <div class="skill-row"><span class="skill-key">math</span><span class="skill-val">linear algebra · discrete · stats · numerical</span></div>
+          <div class="skill-row"><span class="skill-key">agile</span><span class="skill-val">scrum · kanban · xp · code review</span></div>
+          <div class="skill-row"><span class="skill-key">tools</span><span class="skill-val">git · maven · intellij · vscode</span></div>
+          <div class="skill-row"><span class="skill-key">spoken</span><span class="skill-val">english · urdu · hindi</span></div>
+        </div>
       `,
-      pgp: `
-        <p style="font-size: 0.8rem; color: var(--dim); margin-bottom: 0.5rem;">paste your public key below, or remove this section.</p>
-        <pre class="pgp-block">-----BEGIN PGP PUBLIC KEY BLOCK-----
-
-[your public key here]
-
------END PGP PUBLIC KEY BLOCK-----</pre>
+      projects: `
+        <div class="cmd-label">ls -la projects/</div>
+        <div class="projects-list">
+          <div class="project-entry">
+            <div class="project-header"><span class="proj-num">01</span><span class="proj-name">inventory-management-system</span></div>
+            <div class="proj-tags">python · tkinter · csv · back-end lead</div>
+            <div class="proj-blurb">multi-user inventory tracker with role-based access (admin / employee).</div>
+            <div class="proj-detail">csv-backed store · 19 test cases · 95% pass rate · uml class &amp; sequence diagrams</div>
+          </div>
+          <div class="project-entry">
+            <div class="project-header"><span class="proj-num">02</span><span class="proj-name">multiplayer-hangman</span></div>
+            <div class="proj-tags">java · maven · tcp</div>
+            <div class="proj-blurb">multi-threaded networked hangman with single-player, multiplayer, and word-bank editor modes.</div>
+            <div class="proj-detail">tcp server on port 9090 · ClientHandler threads · synchronized GameSyncState across clients</div>
+          </div>
+          <div class="project-entry">
+            <div class="project-header"><span class="proj-num">03</span><span class="proj-name">bayesian-spam-detector</span></div>
+            <div class="proj-tags">java · swing · naive bayes</div>
+            <div class="proj-blurb">naive bayes classifier built from scratch over a labelled email corpus.</div>
+            <div class="proj-detail">log-space arithmetic to avoid underflow · laplace smoothing · accuracy reported in JTable GUI</div>
+          </div>
+          <div class="project-entry">
+            <div class="project-header"><span class="proj-num">04</span><span class="proj-name">tcp-file-sharing</span></div>
+            <div class="proj-tags">java · sockets · swing</div>
+            <div class="proj-blurb">client-server file sharing with custom DIR / UPLOAD / DOWNLOAD protocol.</div>
+            <div class="proj-detail">ClientConnectionHandler thread per connection · split-view JList GUI with auto-refresh</div>
+          </div>
+          <div class="project-entry">
+            <div class="project-header"><span class="proj-num">05</span><span class="proj-name">algorithm-portfolio</span></div>
+            <div class="proj-tags">java · python · latex</div>
+            <div class="proj-blurb">classical algorithm implementations with correctness proofs and complexity analysis.</div>
+            <div class="proj-detail">max-heap from clrs · peak-finding O(log n) · edit distance · knapsack · huffman · radix sort</div>
+          </div>
+          <div class="project-entry">
+            <div class="project-header"><span class="proj-num">06</span><span class="proj-name">banking-system-integration</span></div>
+            <div class="proj-tags">unix · bash · qa</div>
+            <div class="proj-blurb">front-end + back-end banking simulation mirroring real financial system architecture.</div>
+            <div class="proj-detail">unix shell automation · etl-style validation · multi-day continuous-operation simulation</div>
+          </div>
+          <div class="project-entry">
+            <div class="project-header"><span class="proj-num">07</span><span class="proj-name">numerical-methods</span></div>
+            <div class="proj-tags">python · matplotlib · latex</div>
+            <div class="proj-blurb">root-finding and matrix routines for nonlinear scientific problems.</div>
+            <div class="proj-detail">newton's method · bisection · convergence checks · flop-count verification · error analysis</div>
+          </div>
+          <div class="project-entry">
+            <div class="project-header"><span class="proj-num">08</span><span class="proj-name">graphing-calculator</span></div>
+            <div class="proj-tags">java · 2d graphics · swing</div>
+            <div class="proj-blurb">desmos-style calculator for polynomial, log, and trig functions.</div>
+            <div class="proj-detail">first / second derivatives · newton's-method root finding · live-rendered plots</div>
+          </div>
+        </div>
+      `,
+      contact: `
+        <div class="cmd-label">whois abdul</div>
+        <ul class="links-list">
+          <li><span class="key">email</span><a href="mailto:abdulghafour.ahmed@ontariotechu.net">abdulghafour.ahmed@ontariotechu.net</a></li>
+          <li><span class="key">github</span><a href="https://github.com/abdulgafour" target="_blank" rel="noopener noreferrer">abdulgafour</a></li>
+          <li><span class="key">linkedin</span><a href="#" target="_blank" rel="noopener noreferrer">— add url —</a></li>
+          <li><span class="key">location</span><span class="val-text">oshawa, ontario · ca</span></li>
+          <li><span class="key">school</span><span class="val-text">ontario tech university · cs '28</span></li>
+        </ul>
       `
     };
 
@@ -376,7 +554,7 @@
     const navContainer = document.getElementById('nav-buttons');
     const morphEl = document.querySelector('.morph-section');
     const bodyEl = document.getElementById('body');
-    const sections = ['home', 'about', 'links', 'pgp'];
+    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
     let current = 'home';
     let morphTimer = null;
 
@@ -416,7 +594,7 @@
       homeCycleTimer = setInterval(() => {
         homeIdx = (homeIdx + 1) % homeVariants.length;
         morphTo(ascii[homeVariants[homeIdx]]);
-      }, 3000);
+      }, 6000);
     }
 
     function stopHomeCycle() {
