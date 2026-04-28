@@ -516,9 +516,9 @@
       about: `
         <div class="cmd-label">cat about.txt</div>
         <div class="section-content">
-          <p>3rd year computer science @ ontario tech university. focused on the parts of programming that get harder the more you understand them — algorithm design, software architecture, and quality assurance.</p>
+          <p>3rd year computer science @ ontario tech university. focused on the parts of programming that get harder the more you understand them // algorithm design, software architecture, and quality assurance.</p>
           <p>i build things that handle the edge cases nobody asks about: multi-threaded servers that don't deadlock, naive bayes classifiers that survive unseen words, data pipelines that don't break on bad input.</p>
-          <p>strong math foundation in linear algebra, discrete math, and numerical methods — and i like translating models into working code.</p>
+          <p>strong math foundation in linear algebra, discrete math, and numerical methods // and i like translating models into working code.</p>
         </div>
       `,
       skills: `
@@ -596,7 +596,7 @@
         <ul class="links-list">
           <li><span class="key">email</span><a href="mailto:abdulghafour.ahmed@ontariotechu.net">abdulghafour.ahmed@ontariotechu.net</a></li>
           <li><span class="key">github</span><a href="https://github.com/abdulgafour" target="_blank" rel="noopener noreferrer">abdulgafour</a></li>
-          <li><span class="key">linkedin</span><a href="#" target="_blank" rel="noopener noreferrer">— add url —</a></li>
+          <li><span class="key">linkedin</span><a href="#" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/abdul-ghafour-ahmed-80b5a9332/</a></li>
           <li><span class="key">location</span><span class="val-text">oshawa, ontario · ca</span></li>
           <li><span class="key">school</span><span class="val-text">ontario tech university · cs '28</span></li>
         </ul>
@@ -730,7 +730,7 @@
     const audioToggle = document.getElementById('audio-toggle');
     const audioIcon = audioToggle.querySelector('.audio-icon');
     const audioState = audioToggle.querySelector('.audio-state');
-    const TARGET_VOLUME = 0.25; // 25% — quiet, not earrape
+    const TARGET_VOLUME = 0.15; 
     audio.volume = 0;
 
     function updateAudioUI() {
@@ -761,7 +761,7 @@
         fadeVolumeTo(TARGET_VOLUME);
         updateAudioUI();
       } catch (err) {
-        // play blocked — UI stays in 'off' state
+        // play blocked -> UI stays in 'off' state
         updateAudioUI();
       }
     }
